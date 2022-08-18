@@ -1,13 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { FirebaseContext } from "./store/Context";
+// import { firebaseDB } from "./firebase/config";
+import { firebaseDB } from "./firebse/config";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <FirebaseContext.Provider value={{ firebaseDB }}>
+      <App />
+    </FirebaseContext.Provider>
   </React.StrictMode>
 );
 

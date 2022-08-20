@@ -21,7 +21,7 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(firebaseDB);
+    console.log("Context ", firebaseDB);
     console.log(username);
     if (password === cpassword) {
       console.log("Password Match");

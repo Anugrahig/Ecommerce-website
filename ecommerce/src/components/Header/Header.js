@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Header.css";
 import logo from "../../assets/logos/logo.svg";
 import search from "../../assets/logos/search.svg";
 import account from "../../assets/logos/account.svg";
 // import shoppingcart from "../../assets/logos/shopping-cart.svg";
 import cart_icon from "../../assets/logos/cart_icon.svg";
+import { AuthContext } from "../../store/Context";
+import { getAuth, signOut } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const LogOut = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        navigate("/login");
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
+  const navigate = useNavigate();
+  const auth = getAuth();
+  const { user } = useContext(AuthContext);
+  // console.log("User ", user);
   return (
     <div className="header-parent-div">
       <div className="header-barnd-div">
@@ -21,11 +38,24 @@ const Header = () => {
         </div>
       </div>
       <div className="cart-login-div">
-        {/* <div className="login-div">Login</div> */}
-        <div className="user-icon">
-          <img src={account} alt="account-logo" />
-        </div>
+        {user ? (
+          <div className="user-icon">
+            <img src={account} alt="account-logo" />
+            <span className="login-div">{user.displayName}</span>
+          </div>
+        ) : (
+          <div className="login-div">
+            <Link className="login-btn" to="/login">
+              Login
+            </Link>
+          </div>
+        )}
       </div>
+      {user && (
+        <div onClick={LogOut} className="cart-logout">
+          Logout
+        </div>
+      )}
       <div className="cart-logo">
         <span className="cart-icon-css">0</span>
         <img src={cart_icon} alt="cart-logo" />

@@ -9,7 +9,9 @@
   padding: 1.2rem;
   margin-bottom: 1.5rem;
   color: #4c5662;
-  max-width: fit-content;
+  /* max-width: fit-content; */
+  max-width: 222px;
+  width: 222px;
   margin-left: 1.6rem;
 }
 .product-title h2 {
@@ -21,8 +23,10 @@
   border-radius: 5px 5px 0 0;
   height: fit-content;
   width: fit-content;
-  max-height: 250px;
-  max-width: 250px;
+  max-width: 100%;
+  max-height: 100%;
+  /* max-height: 250px;
+  max-width: 250px; */
 }
 .product-title h2 {
   font-size: 2rem;
@@ -44,4 +48,7 @@
   border-radius: 0.4rem;
   border: none;
   padding: 0.8rem 1.5rem;
+}
+.container {
+  cursor: pointer;
 }

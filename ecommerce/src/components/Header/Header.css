@@ -48,9 +48,11 @@
   height: 2.8rem;
   margin-bottom: 0;
 }
+
 .user-icon {
   display: flex;
   flex-direction: column;
+  cursor: pointer;
   /* gap: 0.1rem; */
 }
 .cart-logo img {

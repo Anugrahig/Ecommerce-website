@@ -8,6 +8,7 @@ import cart_icon from "../../assets/logos/cart_icon.svg";
 import { AuthContext } from "../../store/Context";
 import { getAuth, signOut } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
+import User from "../User/User";
 
 const Header = () => {
   const LogOut = () => {
@@ -23,10 +24,15 @@ const Header = () => {
   const navigate = useNavigate();
   const auth = getAuth();
   const { user } = useContext(AuthContext);
-  // console.log("User ", user);
+  // console.log("Header ", user);
   return (
     <div className="header-parent-div">
-      <div className="header-barnd-div">
+      <div
+        className="header-barnd-div"
+        onClick={() => {
+          navigate("/home");
+        }}
+      >
         <img className="brand-logo" src={logo} alt="brand-log" />
       </div>
       <div className="header-search">
@@ -39,7 +45,12 @@ const Header = () => {
       </div>
       <div className="cart-login-div">
         {user ? (
-          <div className="user-icon">
+          <div
+            className="user-icon"
+            onClick={() => {
+              navigate("/user");
+            }}
+          >
             <img src={account} alt="account-logo" />
             <span className="login-div">{user.displayName}</span>
           </div>

@@ -20,12 +20,14 @@ const Posts = () => {
         };
       });
       setProducts(allPost);
+      // console.log(allPost);
     });
   }, []);
 
   return (
     <div>
       <div className="cards">
+        {/* {console.log(firebaseDB)} */}
         {products.map((product) => {
           return (
             <div className="card product-details">
@@ -55,23 +57,6 @@ const Posts = () => {
         })}
       </div>
       {/* 1 */}
-      <div className="card product-details">
-        <img src="../../../Images/Canon.jpg" alt="Avatar" />
-        <div className="container">
-          <div className="product-title">
-            <h2>
-              <b>Milky Mist Cheese Slice</b>
-            </h2>
-          </div>
-          <div className="product-price">
-            <h3 className="org-price">₹499.00</h3>
-            <h3 className="selling-price">₹449.00</h3>
-          </div>
-          <div className="add-to-cart-btn">
-            <button>Add To Cart</button>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

@@ -5,10 +5,11 @@ import { PostContext } from "../../store/PostContext";
 import "./View.css";
 
 const View = () => {
-  const [userDetails, setUserDetails] = useState();
+  // const [userDetails, setUserDetails] = useState();
   const { postDetails } = useContext(PostContext);
-  const { firebaseDB } = useContext(FirebaseContext);
-  const collectionRef = collection(firebaseDB, "users");
+  // console.log("From View", postDetails);
+  // const { firebaseDB } = useContext(FirebaseContext);
+  // const collectionRef = collection(firebaseDB, "users");
   useEffect(() => {
     // const { userId } = postDetails;
     // console.log("UserId" + userId);

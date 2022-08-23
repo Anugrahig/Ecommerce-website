@@ -62,7 +62,7 @@
 }
 .success-msg {
   display: flex;
-  width: 95%;
+  width: 95% !important;
   justify-content: center;
   background-color: rgb(229, 255, 228);
   padding: 10px;
@@ -72,7 +72,7 @@
 
 .error-msg {
   display: flex;
-  width: 95%;
+  width: 95% !important;
   justify-content: center;
   background-color: rgb(255, 228, 228);
   color: red;

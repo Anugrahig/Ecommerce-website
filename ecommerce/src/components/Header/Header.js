@@ -48,7 +48,7 @@ const Header = () => {
           <div
             className="user-icon"
             onClick={() => {
-              navigate("/user");
+              navigate("/profile");
             }}
           >
             <img src={account} alt="account-logo" />
@@ -67,7 +67,12 @@ const Header = () => {
           Logout
         </div>
       )}
-      <div className="cart-logo">
+      <div
+        className="cart-logo"
+        onClick={() => {
+          navigate("/cart");
+        }}
+      >
         <span className="cart-icon-css">0</span>
         <img src={cart_icon} alt="cart-logo" />
       </div>

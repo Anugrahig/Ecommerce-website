@@ -19,9 +19,8 @@ const User = () => {
   const uid = user && user.uid;
   useEffect(() => {
     // console.log(userDetails);
-    console.log("Context", UserContext);
+    // console.log("Context", UserContext);
     // console.log(id);
-
     // const { userId } = postDetails;
     // console.log("UserId" + userId);
     // console.log("Postdetails" + postDetails);
@@ -30,35 +29,44 @@ const User = () => {
     // console.log(userDetails);
     // console.log("address", user.address);
     // });
-    console.log("User Details", userDetails);
-    console.log(userDetails.id);
-    console.log(uid);
+    // console.log("User Details", userDetails);
+    // console.log(userDetails.id);
+    // console.log(uid);
   }, []);
 
   return (
     <div className="user-parent-div">
-      {/* userDetails.id === uid && */}
-      {userDetails.map((user) => (
-        <div className="user-details">
-          <h1>User Details</h1>
-          <div className="user-details-table">
-            <div className="row">
-              <span>User Name : </span>
-              <span>{user.username}</span>
-              <span>{user.id}</span>
-            </div>
+      {userDetails
+        .filter((user) => {
+          if (user.id === uid) {
+            return user;
+          }
+        })
+        .map((user, id) => {
+          return (
+            <div key={id}>
+              <div className="user-details">
+                <h1>User Details</h1>
+                <div className="user-details-table">
+                  <div className="row">
+                    <span>User Name : </span>
+                    <span>{user.username}</span>
+                    <span>{user.id}</span>
+                  </div>
 
-            <div className="row">
-              <span>Email Address : </span>
-              <span></span>
+                  <div className="row">
+                    <span>Email Address : </span>
+                    <span>{user.address}</span>
+                  </div>
+                  <div className="row">
+                    <span>Phone Number : </span>
+                    <span></span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="row">
-              <span>Phone Number : </span>
-              <span></span>
-            </div>
-          </div>
-        </div>
-      ))}
+          );
+        })}
     </div>
   );
 };

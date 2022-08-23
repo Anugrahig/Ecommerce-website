@@ -13,6 +13,8 @@ import { AuthContext, FirebaseContext } from "./store/Context";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import UsersDetails from "./store/UserContext";
 import UserDetails from "./components/User/UserDetails";
+import PageNF from "./Pages/PageNF";
+import Cart from "./Pages/Cart";
 
 function App() {
   const auth = getAuth();
@@ -45,8 +47,9 @@ function App() {
               <Route path="/signup" element={<Signup />} />
               <Route path="/create" element={<Create />} />
               <Route path="/view" element={<View />} />
-              <Route path="/user" element={<User />} />
-              <Route path="/test" element={<UserDetails />} />
+              <Route path="/profile" element={<User />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="*" element={<PageNF />} />
             </Routes>
           </Router>
         </Users>

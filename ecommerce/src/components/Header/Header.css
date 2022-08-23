@@ -48,18 +48,20 @@
   height: 2.8rem;
   margin-bottom: 0;
 }
-
 .user-icon {
   display: flex;
   flex-direction: column;
   cursor: pointer;
   /* gap: 0.1rem; */
 }
-.cart-logo img {
+.cart-logo img,
+span {
   height: 2.8rem;
+  cursor: pointer;
 }
 .cart-login-div {
   /* margin-left: 10rem; */
+  font-size: 1.4rem !important;
 }
 
 .cart-icon-css {

@@ -7,6 +7,8 @@ import "./Login.css";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
   // const { firebaseDB } = useContext(FirebaseContext);
   const navigate = useNavigate();
   const auth = getAuth();
@@ -14,16 +16,27 @@ const Login = () => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        // Signed in
-
-        console.log("Logged in");
-        navigate("/");
-        // ...
+        setSuccessMsg(
+          "Logged in successfully, you will be redirected to homepage"
+        );
+        setEmail("");
+        setPassword("");
+        setErrorMsg("");
+        setTimeout(() => {
+          setSuccessMsg("");
+          navigate("/");
+        }, 3000);
       })
       .catch((error) => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
-        // alert(errorMessage);
+        // const errorCode = error.code;
+        console.log(error.message);
+        if (error.message === "Firebase: Error (auth/invalid-email).") {
+          setErrorMsg("Please fill all the required fields");
+        } else if (error.message === "Firebase: Error (auth/user-not-found).") {
+          setErrorMsg("Email not found");
+        } else if (error.message === "Firebase: Error (auth/wrong-password).") {
+          setErrorMsg("Wrong Password");
+        }
       });
   };
   return (
@@ -31,6 +44,18 @@ const Login = () => {
       <div className="login-container">
         <form onSubmit={handleLogin} className="login-form">
           <p>Login Account</p>
+
+          {successMsg && (
+            <>
+              <div className="success-msg">{successMsg}</div>
+            </>
+          )}
+
+          {errorMsg && (
+            <>
+              <div className="error-msg">{errorMsg}</div>
+            </>
+          )}
 
           <label>Email</label>
           <input
@@ -52,7 +77,13 @@ const Login = () => {
           <div>
             <span className="login-span">Don't have an Account?</span>
 
-            <button>Sign Up</button>
+            <button
+              onClick={() => {
+                navigate("/signup");
+              }}
+            >
+              Sign Up
+            </button>
           </div>
         </form>
       </div>

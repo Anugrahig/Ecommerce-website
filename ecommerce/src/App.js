@@ -11,8 +11,8 @@ import Users, { UserContext } from "./store/UserContext";
 import { useContext, useEffect } from "react";
 import { AuthContext, FirebaseContext } from "./store/Context";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import UsersDetails from "./store/UserContext";
-import UserDetails from "./components/User/UserDetails";
+// import UsersDetails from "./store/UserContext";
+// import UserDetails from "./components/User/UserDetails";
 import PageNF from "./Pages/PageNF";
 import Cart from "./Pages/Cart";
 

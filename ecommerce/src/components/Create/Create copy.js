@@ -1,7 +1,7 @@
 import { addDoc, collection } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import React, { useContext, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { AuthContext, FirebaseContext } from "../../store/Context";
 import "./Create.css";
 
@@ -12,48 +12,18 @@ const Create = () => {
   const [originalPrice, setOriginalPrice] = useState("");
   const [sellingPrice, setSellingPrice] = useState("");
   const [image, setImage] = useState("");
-  const [imageError, setImageError] = useState("");
-  const [successMsg, setSuccessMsg] = useState("");
-  const [uploadError, setUploadError] = useState("");
-  const navigate = useNavigate();
   const { firebaseDB } = useContext(FirebaseContext);
   const { user } = useContext(AuthContext);
-  const types = [
-    "image/jpg",
-    "image/jpeg",
-    "image/png",
-    "image/gif",
-    "image/PNG",
-  ];
-  const handleProductImg = (e) => {
-    e.preventDefault();
-    let selectedFile = e.target.files[0];
-    if (selectedFile) {
-      if (selectedFile && types.includes(selectedFile.type)) {
-        setImage(selectedFile);
-        setImageError("");
-      } else {
-        setImage(null);
-        setImageError("Please select a valid image file types (Png or Jpeg)");
-      }
-    } else {
-      setImageError("please select your file");
-    }
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const storage = getStorage();
-    const storageRef = ref(
-      storage,
-      `/images/${category.toUpperCase()}/${image.name}`
-    );
+    const storageRef = ref(storage, `/images/${image.name}`);
     uploadBytes(storageRef, image).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         console.log("Uploaded a blob or file!");
         console.log(url);
 
-        addDoc(collection(firebaseDB, `products-${category.toUpperCase()}`), {
+        addDoc(collection(firebaseDB, "products"), {
           title,
           category,
           weight,
@@ -63,7 +33,7 @@ const Create = () => {
           url,
           userId: user.uid,
         });
-        navigate("/");
+        Navigate("/");
       });
     });
   };
@@ -73,8 +43,6 @@ const Create = () => {
       <div className="addprod-container">
         <form className="addprod-form">
           <p>Add Product</p>
-          {successMsg && <div className="success-msg">{successMsg}</div>}
-          {uploadError && <div className="error-msg">{uploadError}</div>}
 
           <label>Product Title</label>
           <input
@@ -114,12 +82,7 @@ const Create = () => {
             onChange={(e) => setSellingPrice(e.target.value)}
           />
           <label>Image</label>
-          <input type="file" onChange={handleProductImg} />
-          {imageError && (
-            <>
-              <div className="error-msg">{imageError}</div>
-            </>
-          )}
+          <input type="file" onChange={(e) => setImage(e.target.files[0])} />
 
           <button onClick={handleSubmit}>Add</button>
         </form>

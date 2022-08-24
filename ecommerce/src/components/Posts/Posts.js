@@ -28,9 +28,9 @@ const Posts = () => {
     <div>
       <div className="cards">
         {/* {console.log(firebaseDB)} */}
-        {products.map((product) => {
+        {products.map((product, id) => {
           return (
-            <div className="card product-details">
+            <div className="card product-details" key={id}>
               <img src={product.url} alt="Avatar" />
               <div
                 className="container"

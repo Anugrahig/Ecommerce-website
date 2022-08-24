@@ -17,8 +17,8 @@
 }
 
 .addprod-form p {
-  /* font-size: 25px; */
-  font-weight: 500;
+  font-size: 2.6rem !important;
+  font-weight: 500 !important;
   /* border: 1px solid black; */
   margin: 10px 0;
 }
@@ -26,8 +26,9 @@
 .addprod-form label {
   padding: 0px;
   margin-top: 5px;
-  font-weight: 700;
-  font-size: 12px;
+  font-weight: 700 !important;
+  font-size: 1.8rem !important;
+  margin-bottom: 0.6rem;
 }
 
 .addprod-form input {

@@ -1,0 +1,86 @@
+.user-parent-div {
+  margin: 3rem;
+  display: flex;
+  justify-content: center;
+}
+h1 {
+  font-size: 3rem;
+  margin-bottom: 2.4rem;
+}
+.user-details {
+  margin: 3rem;
+  background-color: rgba(255, 250, 250, 0.2);
+  border: 1px solid rgb(224, 224, 224);
+  border-radius: 0.4rem;
+  /* display: flex; */
+  padding: 6rem;
+  width: 50rem;
+}
+.row-1,
+.row-2,
+.row-3,
+.row-4 {
+  display: flex;
+  justify-content: space-between;
+  /* gap: 10rem; */
+  /* gap: -999rem; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+}
+
+h4 {
+  margin-bottom: 1.6rem;
+  font-size: 1.8rem;
+}
+
+.user-details button {
+  display: flex;
+  align-items: center;
+  background-color: #ed2328;
+  margin: 1rem 0 0rem 0;
+  border: none;
+  font-size: 20px;
+  color: white;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  border: solid 1px #ed2328;
+}
+.user-details button:hover {
+  background-color: white;
+  color: #ff0004;
+  cursor: pointer;
+  border: solid 1px #ff0004;
+}
+.add-products {
+  margin: 3rem;
+  background-color: rgba(255, 250, 250, 0.2);
+  border: 1px solid rgb(224, 224, 224);
+  border-radius: 0.4rem;
+  /* display: flex; */
+  /* padding: 1rem 0; */
+  width: 50rem;
+}
+.add-products button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ed2328;
+  margin: 0rem 0 0rem 0;
+  border: none;
+  font-size: 20px;
+  color: white;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  border: solid 1px #ed2328;
+  width: 100%;
+}
+.add-products button:hover {
+  background-color: white;
+  color: #ff0004;
+  cursor: pointer;
+  border: solid 1px #ff0004;
+}

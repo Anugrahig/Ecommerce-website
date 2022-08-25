@@ -46,7 +46,7 @@ const Create = () => {
     const storage = getStorage();
     const storageRef = ref(
       storage,
-      `/images/${category.toUpperCase()}/${image.name}`
+      `/images-${category.toUpperCase()}/${image.name}`
     );
     uploadBytes(storageRef, image).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
@@ -56,7 +56,7 @@ const Create = () => {
         addDoc(collection(firebaseDB, `products-${category.toUpperCase()}`), {
           title,
           category,
-          weight,
+          weight: null,
           stock: true,
           originalPrice,
           sellingPrice,

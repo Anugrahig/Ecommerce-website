@@ -1,0 +1,19 @@
+.product-category {
+  background-color: #dc143c;
+  display: flex;
+  justify-content: center;
+}
+.product-category button {
+  background-color: #dc143c;
+  padding: 0.3rem 0.6rem;
+  margin: 8px 15px;
+  border: 2px solid white;
+  color: white;
+  border-radius: 5px;
+  font-size: 13px;
+}
+.product-category button:hover {
+  background-color: #c21e56;
+  color: white;
+  font-weight: 600;
+}

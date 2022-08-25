@@ -8,13 +8,15 @@ import View from "./Pages/ViewPost";
 import User from "./Pages/User";
 import Post from "./store/PostContext";
 import Users, { UserContext } from "./store/UserContext";
-import { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { AuthContext, FirebaseContext } from "./store/Context";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 // import UsersDetails from "./store/UserContext";
 // import UserDetails from "./components/User/UserDetails";
 import PageNF from "./Pages/PageNF";
 import Cart from "./Pages/Cart";
+import ProductPages from "./components/ProductPages/ProductPages";
+import Posts from "./components/Posts/Posts";
 
 function App() {
   const auth = getAuth();
@@ -50,6 +52,18 @@ function App() {
               <Route path="/profile" element={<User />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="*" element={<PageNF />} />
+              <Route
+                path="/products-category/grocery"
+                element={<Posts type={"Grocery"} />}
+              />
+              <Route
+                path="/products-category/stationery"
+                element={<Posts type={"Stationery"} />}
+              />
+              <Route
+                path="/products-category/snacks"
+                element={<Posts type={"Snacks"} />}
+              />
             </Routes>
           </Router>
         </Users>

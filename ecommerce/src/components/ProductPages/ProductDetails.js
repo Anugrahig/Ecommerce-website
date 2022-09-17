@@ -3,15 +3,48 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FirebaseContext } from "../../store/Context";
 import { PostContext } from "../../store/PostContext";
-import "./Posts.css";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import "./ProductDetails.css";
 
-const Posts = () => {
+const ProductDetails = (props) => {
   const { firebaseDB } = useContext(FirebaseContext);
   const [products, setProducts] = useState([]);
-  const { setPostDetails } = useContext(PostContext);
+  const [allPro, setAllPro] = useState([]);
+  // const { setPostDetails } = useContext(PostContext);
+  const {
+    postDetails,
+    setPostDetails,
+    allProductDetails,
+    setAllProductDetails,
+  } = useContext(PostContext);
+  // allProductDetails,setAllProductDetails
   const navigate = useNavigate();
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1050 },
+      items: 5,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 2,
+    },
+  };
   useEffect(() => {
-    const collectionRef = collection(firebaseDB, "products");
+    // console.log(props.type);
+    const path = `products-${props.type.toUpperCase()}`;
+    const collectionRef = collection(firebaseDB, path);
+    // console.log(props.type);
+
     getDocs(collectionRef).then((snapshot) => {
       const allPost = snapshot.docs.map((product) => {
         return {
@@ -20,14 +53,17 @@ const Posts = () => {
         };
       });
       setProducts(allPost);
-      // console.log(allPost);
+      // setProducts(allPost);
+      setAllProductDetails(allPost);
+      setAllPro(allPost);
+      // console.log("Uploaded....", allProductDetails);
+      // console.log("allPost", products);
     });
-  }, []);
-
+  }, [props]);
   return (
     <div>
-      <div className="cards">
-        {/* {console.log(firebaseDB)} */}
+      <Carousel responsive={responsive}>
+        {/* {console.log("Products", products)} */}
         {products.map((product, id) => {
           return (
             <div className="card product-details" key={id}>
@@ -36,6 +72,7 @@ const Posts = () => {
                 className="container"
                 onClick={() => {
                   setPostDetails(product);
+                  setAllProductDetails(products);
                   navigate("/view");
                 }}
               >
@@ -49,15 +86,15 @@ const Posts = () => {
                   <h3 className="selling-price">₹{product.sellingPrice}</h3>
                 </div>
                 <div className="add-to-cart-btn">
-                  <button>Add To Cart</button>
+                  <button className="btn">Add To Cart</button>
                 </div>
               </div>
             </div>
           );
         })}
-      </div>
+      </Carousel>
     </div>
   );
 };
 
-export default Posts;
+export default ProductDetails;

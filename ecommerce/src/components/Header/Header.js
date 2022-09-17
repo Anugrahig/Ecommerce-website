@@ -1,14 +1,16 @@
 import React, { useContext } from "react";
 import "./Header.css";
 import logo from "../../assets/logos/logo.svg";
-import search from "../../assets/logos/search.svg";
 import account from "../../assets/logos/account.svg";
 // import shoppingcart from "../../assets/logos/shopping-cart.svg";
 import cart_icon from "../../assets/logos/cart_icon.svg";
 import { AuthContext } from "../../store/Context";
 import { getAuth, signOut } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
-import User from "../User/User";
+// import User from "../User/User";
+import { collection } from "firebase/firestore";
+import { firebaseDB } from "../../firebse/config";
+import { OrderContext } from "../../store/OrderContext";
 
 const Header = () => {
   const LogOut = () => {
@@ -24,7 +26,31 @@ const Header = () => {
   const navigate = useNavigate();
   const auth = getAuth();
   const { user } = useContext(AuthContext);
-  // console.log("Header ", user);
+  const userid = user && user.id;
+  // const [user, setUser] = useState();
+  // console.log("User", user.uid);
+  // const { user } = useContext(AuthContext);
+
+  const userCollectionRef = collection(firebaseDB, `cart-${userid}`);
+  // const [cartDetails, setCartDetails] = useState([]);
+  const { allProduct } = useContext(OrderContext);
+
+  // useEffect(() => {
+  // console.log(allProduct);
+  // const getCartDetails = async () => {
+  //   const data = await getDocs(userCollectionRef);
+  //   setCartDetails(
+  //     data.docs.map((doc) => ({
+  //       ...doc.data(),
+  //       id: doc.id,
+  //     }))
+  //   );
+  // };
+  // getCartDetails();
+  // }, []);
+  // console.log(userid);
+  // console.log("Header Cd ", allProduct);
+  // console.log("Header ", allProduct.length);
   return (
     <div className="header-parent-div">
       <div
@@ -35,14 +61,7 @@ const Header = () => {
       >
         <img className="brand-logo" src={logo} alt="brand-log" />
       </div>
-      <div className="header-search">
-        <div className="search-input">
-          <input type="text" placeholder="Search for products" />
-        </div>
-        <div className="search-action">
-          <img src={search} alt="search-logo" />
-        </div>
-      </div>
+      <div className="header-search"></div>
       <div className="cart-login-div">
         {user ? (
           <div
@@ -73,7 +92,7 @@ const Header = () => {
           navigate("/cart");
         }}
       >
-        <span className="cart-icon-css">0</span>
+        <span className="cart-icon-css">{allProduct.length}</span>
         <img src={cart_icon} alt="cart-logo" />
       </div>
     </div>

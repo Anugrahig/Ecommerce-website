@@ -50,8 +50,8 @@ const Create = () => {
     );
     uploadBytes(storageRef, image).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
-        console.log("Uploaded a blob or file!");
-        console.log(url);
+        // console.log("Uploaded a blob or file!");
+        // console.log(url);
 
         addDoc(collection(firebaseDB, `products-${category.toUpperCase()}`), {
           title,

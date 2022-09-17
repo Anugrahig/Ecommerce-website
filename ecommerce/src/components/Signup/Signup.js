@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { FirebaseContext } from "../../store/Context";
+import { AuthContext, FirebaseContext } from "../../store/Context";
 import { useNavigate } from "react-router-dom";
 import "./Signup.css";
 import {
@@ -21,6 +21,7 @@ const Signup = () => {
   const { firebaseDB } = useContext(FirebaseContext);
   const auth = getAuth();
   const navigate = useNavigate();
+  // const { user } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -79,6 +80,9 @@ const Signup = () => {
       }, 4000);
     }
   };
+  // const createCart = () => {
+
+  // };
 
   return (
     <div>

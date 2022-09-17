@@ -1,17 +1,9 @@
 .cards {
   /* margin-top: 0.4rem; */
+  display: flex;
   /* flex-direction: column; */
   margin: 1rem 0;
-}
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  /* align-items: stretch; */
-  /* justify-content: end; */
-  /* justify-content: space-around; */
-  /* align-items: flex-end; */
-  /* justify-content: stretch; */
+  gap: 0;
 }
 .card {
   margin-top: 1rem;
@@ -22,9 +14,11 @@
   margin-bottom: 1.5rem;
   color: #4c5662;
   /* max-width: fit-content; */
-  max-width: 222px;
-  width: 222px;
+  max-width: 222px !important;
+  min-height: 415px !important;
+  /* width: 222px !important; */
   margin-left: 1.6rem;
+  /* gap: 0 !important; */
 }
 .product-title h2 {
   font-weight: 500;
@@ -47,33 +41,21 @@
   font-size: 1.4rem;
   font-weight: 300;
   display: flex;
-  gap: 2rem;
+  gap: 0.6rem;
   flex-direction: column;
 }
 .product-price .selling-price {
   color: #999;
   text-decoration: line-through;
 }
-.add-to-cart-btn {
-  /* align-items: flex-end;*/
-  /* justify-content: flex-end; */
-  /* align-content: flex-end; */
-  /* align-self: flex-end; */
-  /* justify-self: flex-end; */
-  justify-self: flex-end;
-  /* align-self: stretch; */
-}
-
-.add-to-cart-btn button {
+.add-to-cart-btn .btn {
   color: #fff;
   background-color: #12a339;
   border: none;
   border-radius: 0.4rem;
   border: none;
   padding: 0.8rem 1.5rem;
-  width: 100%;
-  /* justify-self: flex-end; */
-  align-self: end;
+  font-size: 1.4rem;
 }
 .container {
   cursor: pointer;

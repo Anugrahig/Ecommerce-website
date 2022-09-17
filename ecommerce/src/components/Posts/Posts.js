@@ -10,7 +10,8 @@ import "./Posts.css";
 const Posts = (props) => {
   const { firebaseDB } = useContext(FirebaseContext);
   const [products, setProducts] = useState([]);
-  const { setPostDetails } = useContext(PostContext);
+  // const [allProducts, setAllProducts] = useState([]);
+  const { setPostDetails, setAllProductDetails } = useContext(PostContext);
   const navigate = useNavigate();
   useEffect(() => {
     // console.log(props.type);
@@ -26,7 +27,8 @@ const Posts = (props) => {
         };
       });
       setProducts(allPost);
-      console.log(allPost);
+      setAllProductDetails(allPost);
+      // console.log(allPost);
     });
   }, [props]);
 
@@ -39,7 +41,6 @@ const Posts = (props) => {
         {products.map((product, id) => {
           return (
             <div className="card product-details" key={id}>
-              <img src={product.url} alt="Avatar" />
               <div
                 className="container"
                 onClick={() => {
@@ -47,6 +48,7 @@ const Posts = (props) => {
                   navigate("/view");
                 }}
               >
+                <img src={product.url} alt="Avatar" />
                 <div className="product-title">
                   <h2>
                     <b>{product.title}</b>
@@ -57,7 +59,7 @@ const Posts = (props) => {
                   <h3 className="selling-price">₹{product.sellingPrice}</h3>
                 </div>
                 <div className="add-to-cart-btn">
-                  <button>Add To Cart</button>
+                  <button className="btn">Add To Cart</button>
                 </div>
               </div>
             </div>

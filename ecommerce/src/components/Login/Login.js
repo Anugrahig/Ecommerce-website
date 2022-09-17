@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
-import { FirebaseContext } from "../../store/Context";
+import { AuthContext, FirebaseContext } from "../../store/Context";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import { addDoc, collection } from "firebase/firestore";
+import { firebaseDB } from "../../firebse/config";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,8 +12,10 @@ const Login = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
   // const { firebaseDB } = useContext(FirebaseContext);
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const auth = getAuth();
+
   const handleLogin = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
@@ -27,6 +31,7 @@ const Login = () => {
           navigate("/");
         }, 3000);
       })
+
       .catch((error) => {
         // const errorCode = error.code;
         console.log(error.message);
@@ -39,6 +44,7 @@ const Login = () => {
         }
       });
   };
+
   return (
     <div>
       <div className="login-container">
@@ -73,7 +79,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button>Login</button>
+          <button onClick={() => {}}>Login</button>
           <div>
             <span className="login-span">Don't have an Account?</span>
 

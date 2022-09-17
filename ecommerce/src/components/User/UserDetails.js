@@ -6,7 +6,7 @@ import { UserContext } from "../../store/UserContext";
 const UserDetails = () => {
   const { firebaseDB } = useContext(FirebaseContext);
   const [users, setUsers] = useState([]);
-  const { userDetails, setUserDetails } = useContext(UserContext);
+  const { setUserDetails } = useContext(UserContext);
   useEffect(() => {
     const collectionRef = collection(firebaseDB, "users");
     getDocs(collectionRef).then((snapshot) => {

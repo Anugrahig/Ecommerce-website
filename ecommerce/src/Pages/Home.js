@@ -4,6 +4,7 @@ import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import Posts from "../components/Posts/Posts";
 import ShopybyCategory from "../components/ShopybyCategory/ShopybyCategory";
+import Slider from "../components/Slider/Slider";
 
 const Home = () => {
   return (
@@ -11,7 +12,7 @@ const Home = () => {
       <Header />
       <ShopybyCategory />
       <Banner />
-      {/* <Posts /> */}
+      <Slider />
       <Footer />
     </div>
   );

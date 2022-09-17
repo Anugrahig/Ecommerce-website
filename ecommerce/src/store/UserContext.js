@@ -1,6 +1,6 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { createContext, useContext, useEffect, useState } from "react";
-import { AuthContext, FirebaseContext } from "./Context";
+import { FirebaseContext } from "./Context";
 import { auth } from "../firebse/config";
 export const UserContext = createContext(null);
 function UsersDet({ children }) {
